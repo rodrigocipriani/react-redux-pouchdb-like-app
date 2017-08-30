@@ -1,8 +1,8 @@
 import 'babel-polyfill';
 import Vue from 'vue';
-import reduxStorePlugin from '../es2x/vue-redux-connect/reduxStorePlugin';
-import store from './store';
 import 'normalize.css';
+import reduxStorePlugin from 'es2k-helpers/vue-redux-connect/reduxStorePlugin';
+import store from './store';
 import './main.css';
 import App from './App/App.vue';
 

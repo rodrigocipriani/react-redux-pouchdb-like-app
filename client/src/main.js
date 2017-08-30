@@ -15,9 +15,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('app'),
 );
-
-
-store.subscribe(() => {
-  // console.log('store.getState()', store.getState());
-  // const total = store.getState().appReducer.total;
-});

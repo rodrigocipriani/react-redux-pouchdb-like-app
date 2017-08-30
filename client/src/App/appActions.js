@@ -1,4 +1,4 @@
-import api from '../../es2x/api';
+import api from 'es2k-helpers/api';
 import config from '../../config';
 import { appActionTypes } from './appActionTypes';
 

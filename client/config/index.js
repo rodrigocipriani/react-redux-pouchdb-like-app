@@ -1,4 +1,4 @@
-const configCreator = require('../es2x/configCreator');
+const configCreator = require('es2k-helpers/configCreator');
 
 const defaultConfig = require('./env/default');
 const development = require('./env/development');

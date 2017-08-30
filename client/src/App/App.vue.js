@@ -1,6 +1,6 @@
 // import { UiAlert, UiButton } from 'keen-ui';
 import UiButton from 'keen-ui/lib/UiButton';
-import connect from '../../es2x/vue-redux-connect/connect';
+import connect from 'es2k-helpers/vue-redux-connect/connect';
 import { appActionTypes } from './appActionTypes';
 
 const App = {

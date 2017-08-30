@@ -12,6 +12,7 @@
   "author": "Rodrigo Cipriani da Rosa",
   "license": "ISC",
   "dependencies": {
+    "es2k-helpers": "0.0.2",
     "keen-ui": "^1.0.0",
     "material-ui": "next",
     "normalize.css": "^7.0.0",
@@ -51,11 +52,6 @@
     "webpack-dev-server": "^2.7.1"
   },
   "optionalDependencies": {
-    "axios": "^0.16.2",
-    "babel-polyfill": "^6.26.0",
-    "deepmerge": "^1.5.1",
-    "lodash": "^4.17.4",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "babel-polyfill": "^6.26.0"
   }
 }
