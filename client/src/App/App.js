@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import Typography from 'es2k-react-components/material/style/Typography/Typography';
-import Button from 'material-ui/Button';
+import Typography from 'es2k-react-components/material/style/Typography';
+import Button from 'es2k-react-components/material/components/Button';
+// import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import * as appActions from './appActions';
 import BigListComponent from './BigListComponent';
