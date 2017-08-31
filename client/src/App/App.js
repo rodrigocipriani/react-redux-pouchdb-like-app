@@ -10,7 +10,7 @@ import BigListComponent from './BigListComponent';
 class App extends PureComponent {
 
   render() {
-    const { total, add, reset, biglist, criarListaServer, criarListaClassic, criarListaClient } = this.props;
+    const { total, add, addText, text, reset, biglist, criarListaServer, criarListaClassic, criarListaClient } = this.props;
 
 
     return (
@@ -31,6 +31,10 @@ class App extends PureComponent {
         <br/><br/>
 
         <TextField onChange={e => add(e.target.value)} value={total}/>
+
+        <br/><br/>
+
+        <TextField label="Text" onChange={e => addText(e.target.value)} value={text}/>
 
         <br/><br/>
 
@@ -61,7 +65,8 @@ App.defaultProps = {};
 
 function mapStateToProps(state) {
   return {
-    total  : state.appStore.total,
+    total: state.appStore.total,
+    text: state.appStore.text,
     biglist: state.appStore.biglist,
   };
 }
@@ -70,6 +75,9 @@ function mapActionToProps(dispatch) {
   return {
     add(total) {
       dispatch(appActions.add(total));
+    },
+    addText(text) {
+      dispatch(appActions.addText(text));
     },
     reset() {
       dispatch(appActions.reset());

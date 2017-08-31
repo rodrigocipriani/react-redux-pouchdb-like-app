@@ -10,6 +10,11 @@ export const add = total => ({
   payload: total,
 });
 
+export const addText = text => ({
+  type: appActionTypes.ADD_TEXTO,
+  payload: text,
+});
+
 export const reset = () => ({
   type: appActionTypes.RESET_TOTAL,
   promise: appApi.get('/reset'),

@@ -2,6 +2,7 @@ import { appActionTypes } from './appActionTypes';
 
 const initialState = {
   total: 0,
+  texto: '',
   teste: 1,
   biglist: [{ id: 0, nome: 'item 0' }],
 };
@@ -11,6 +12,11 @@ const actionsMap = {
   [appActionTypes.ADD]: (state, action) => {
     const total = action.payload ? parseInt(action.payload, 0) : state.total + 1;
     return { ...state, total };
+  },
+
+  [appActionTypes.ADD_TEXTO]: (state, action) => {
+    const text = action.payload ? action.payload : state.text;
+    return { ...state, text };
   },
 
   [appActionTypes.CRIAR_LISTA_CLIENT]: (state, action) => {
