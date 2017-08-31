@@ -13,9 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "es2k-helpers": "0.0.2",
-    "es2k-react-components": "0.0.6",
+    "es2k-react-components": "0.0.7",
     "keen-ui": "^1.0.0",
-    "material-ui": "next",
     "normalize.css": "^7.0.0",
     "pouchdb": "^6.3.4",
     "prop-types": "^15.5.10",
