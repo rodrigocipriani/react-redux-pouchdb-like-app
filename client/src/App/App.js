@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
+import Typography from 'es2k-react-components/material/style/Typography/Typography';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import * as appActions from './appActions';
@@ -15,7 +16,7 @@ class App extends PureComponent {
     return (
       <div>
 
-        <h2>React App</h2>
+        <Typography type="display2" gutterBottom> React App</Typography>
         <Button onClick={() => add(null)} raised color="primary">
           Add 1 (Client)
         </Button>
@@ -60,7 +61,7 @@ App.defaultProps = {};
 
 function mapStateToProps(state) {
   return {
-    total: state.appStore.total,
+    total  : state.appStore.total,
     biglist: state.appStore.biglist,
   };
 }
