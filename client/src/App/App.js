@@ -13,7 +13,7 @@ import BigListComponent from './BigListComponent';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 30,
+    margin: 5,
   },
   paper: {
     padding: 16,
@@ -35,7 +35,7 @@ class App extends PureComponent {
     return (
       <div className={classes.root}>
 
-        <Grid container spacing={24}>
+        <Grid container spacing={0}>
           <Grid item xs={12}>
             <Typography type="display2" gutterBottom> React App</Typography>
           </Grid>

@@ -13,7 +13,7 @@ const config = {
   vendorsName: `vendors${withHash ? '-[hash]' : ''}.js`,
   cssBundleName: `[name]-style${withHash ? '-[hash]' : ''}.css`,
   buildFolder: path.resolve(__dirname, 'build'),
-  sourceFolder: path.resolve(__dirname, IS_PRODUCTION ? './build' : './src'),
+  sourceFolder: path.resolve(__dirname, IS_PRODUCTION ? './src' : './src'),
   entryPoint: './main.js',
   entryPointVue: './main.vue.js',
   indexHtml: path.join(__dirname, 'assets', 'index.html'),
