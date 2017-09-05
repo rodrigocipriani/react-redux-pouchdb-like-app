@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const withHash = false;
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const config = {
   assetsFolder: path.resolve(__dirname, 'assets'),
   imageFolder: path.resolve(__dirname, 'assets'),
@@ -12,12 +13,13 @@ const config = {
   vendorsName: `vendors${withHash ? '-[hash]' : ''}.js`,
   cssBundleName: `[name]-style${withHash ? '-[hash]' : ''}.css`,
   buildFolder: path.resolve(__dirname, 'build'),
-  sourceFolder: path.resolve(__dirname, 'src'),
+  sourceFolder: path.resolve(__dirname, IS_PRODUCTION ? './build' : './src'),
   entryPoint: './main.js',
   entryPointVue: './main.vue.js',
   indexHtml: path.join(__dirname, 'assets', 'index.html'),
-  isProduction: process.env.NODE_ENV === 'production',
-  host: '127.0.0.1',
+  isProduction: IS_PRODUCTION,
+  host: '0.0.0.0',
+  port: 8080,
 };
 
 console.log(config, process.env.NODE_ENV);
@@ -40,8 +42,27 @@ const webpackConfig = {
   devtool: config.isProduction ? 'cheap-module-source-map' : 'eval',
   devServer: {
     contentBase: config.sourceFolder,
-    host: '0.0.0.0',
+    historyApiFallback: true,
+    port: config.port,
+    compress: config.isProduction,
+    inline: !config.isProduction,
+    hot: !config.isProduction,
+    host: config.host,
     disableHostCheck: !config.isProduction,
+    stats: {
+      assets: true,
+      children: false,
+      chunks: false,
+      hash: false,
+      modules: false,
+      publicPath: false,
+      timings: true,
+      version: false,
+      warnings: true,
+      colors: {
+        green: '\u001b[32m',
+      },
+    },
   },
   module: {
     loaders: [
@@ -96,19 +117,45 @@ const webpackConfig = {
     ],
   },
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({ template: config.indexHtml }),
+    new ExtractTextPlugin({
+      filename: config.cssBundleName,
+      allChunks: true,
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendors',
       filename: config.vendorsName,
       minChunks: 2,
     }),
-    new ExtractTextPlugin({
-      filename: config.cssBundleName,
-      allChunks: true,
-    }),
   ],
 };
+
+/*
+* If production
+* */
+if (config.isProduction) {
+  webpackConfig.plugins.push(
+    new webpack.optimize.ModuleConcatenationPlugin(),
+  );
+  webpackConfig.plugins.push(
+    new webpack.optimize.UglifyJsPlugin(),
+  );
+  // webpackConfig.plugins.push(
+  //   new webpack.optimize.CommonsChunkPlugin({
+  //     name: 'vendors',
+  //     filename: config.vendorsName,
+  //     minChunks: 2,
+  //   }),
+  // );
+}
+
+/*
+* If not production
+* */
+if (!config.isProduction) {
+  webpackConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+  );
+}
 
 module.exports = webpackConfig;

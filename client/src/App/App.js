@@ -1,65 +1,104 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Grid from 'material-ui/Grid';
+import { withStyles } from 'material-ui/styles';
+import Paper from 'material-ui/Paper';
 import Typography from 'es2k-react-components/material/style/Typography';
 import Button from 'es2k-react-components/material/components/Button';
 import TextField from 'es2k-react-components/material/components/TextField';
 import * as appActions from './appActions';
 import BigListComponent from './BigListComponent';
 
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: 30,
+  },
+  paper: {
+    padding: 16,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
+
 
 class App extends PureComponent {
 
   render() {
-    const { total, add, addText, text, reset, biglist, criarListaServer, criarListaClassic, criarListaClient } = this.props;
+    const {
+      total, add, addText, text, reset, biglist, criarListaServer,
+      criarListaClassic, criarListaClient, classes,
+    } = this.props;
 
 
     return (
-      <div>
+      <div className={classes.root}>
 
-        <Typography type="display2" gutterBottom> React App</Typography>
-        <Button onClick={() => add(null)} raised color="primary">
-          Add 1 (Client)
-        </Button>
-        <Button onClick={reset} raised color="primary">
-          Zerar contador (Server)
-        </Button>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <Typography type="display2" gutterBottom> React App</Typography>
+          </Grid>
 
-        <br/><br/>
+          <Grid item xs={12}>
+            <Button onClick={() => add(null)} raised color="primary">
+              Add 1 (Client)
+            </Button>
+            <Button onClick={reset} raised color="primary">
+              Zerar contador (Server)
+            </Button>
+          </Grid>
 
-        <div>Total: {total}</div>
+          <Grid item xs={12}>
+            <div>Total: {total}</div>
+          </Grid>
 
-        <br/><br/>
+          <Grid item xs={12}>
 
-        <TextField onChange={e => add(e.target.value)} value={total}/>
+            <TextField onChange={e => add(e.target.value)} value={total}/>
 
-        <br/><br/>
+          </Grid>
 
-        <TextField label="Text" onChange={e => addText(e.target.value)} value={text}/>
+          <Grid item xs={12}>
 
-        <br/><br/>
+            <TextField label="Text" onChange={e => addText(e.target.value)} value={text}/>
 
-        <Button onClick={() => criarListaClassic(total)} raised color="primary">
-          Criar lista (Classic)
-        </Button>
+          </Grid>
 
-        <Button onClick={() => criarListaServer(total)} raised color="primary">
-          Criar lista (Server)
-        </Button>
+          <Grid item xs={12}>
 
-        <Button onClick={() => criarListaClient()} raised color="primary">
-          Criar lista (Client)
-        </Button>
+            <Button onClick={() => criarListaClassic(total)} raised color="primary">
+              Criar lista (Classic)
+            </Button>
 
-        <br/><br/>
+            <Button onClick={() => criarListaServer(total)} raised color="primary">
+              Criar lista (Server)
+            </Button>
 
-        <BigListComponent list={biglist}/>
+            <Button onClick={() => criarListaClient()} raised color="primary">
+              Criar lista (Client)
+            </Button>
 
+          </Grid>
+
+          <Grid item xs={12}>
+
+            <BigListComponent list={biglist}/>
+
+          </Grid>
+
+          <Grid item xs={12}>
+
+          </Grid>
+        </Grid>
       </div>
     );
   }
 }
 
-App.propTypes = {};
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 App.defaultProps = {};
 
@@ -94,4 +133,6 @@ function mapActionToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapActionToProps)(App);
+export default connect(mapStateToProps, mapActionToProps)(
+  withStyles(styles)(App),
+);
