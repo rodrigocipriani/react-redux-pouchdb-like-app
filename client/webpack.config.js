@@ -166,28 +166,15 @@ const webpackConfig = {
       // exclude: ['file.txt', /.*\.js$/],  // Exclude file.txt and all .js files
       output: 'offline.manifest',
     }),
-    new CopyWebpackPlugin(
-      [
-        { from: config.assetsFolder },
-      ],
-      {
-        ignore: ['index.html', 'manifest.json'],
-        copyUnmodified: true,
-      },
-    ),
-  ],
+    new CopyWebpackPlugin([{ from: config.assetsFolder }, { ignore: ['index.html', 'manifest.json'], copyUnmodified: true }])],
 };
 
 /*
  * If production
  * */
 if (config.isProduction) {
-  webpackConfig.plugins.push(
-    new webpack.optimize.ModuleConcatenationPlugin(),
-  );
-  webpackConfig.plugins.push(
-    new webpack.optimize.UglifyJsPlugin(),
-  );
+  webpackConfig.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
   // webpackConfig.plugins.push(
   //   new webpack.optimize.CommonsChunkPlugin({
   //     name: 'vendors',
@@ -210,9 +197,9 @@ if (config.isProduction) {
  * If not production
  * */
 if (!config.isProduction) {
-  webpackConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-  );
+  /* webpackConfig.plugins.push(
+     new webpack.HotModuleReplacementPlugin(),
+   ); */
 }
 
 module.exports = webpackConfig;

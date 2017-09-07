@@ -43,9 +43,7 @@ gulp.task('deploy:heroku',
 // Building Client (Clean)
 
 const buildFolder = path.join('.', 'build');
-gulp.task('webpack:build:clean',
-  deleteFolderRecursive(path.join(__dirname, 'client', 'build')),
-);
+gulp.task('webpack:build:clean', deleteFolderRecursive(path.join(__dirname, 'client', 'build')));
 
 const setNodeEnvProductionCommand = isWin ? 'set NODE_ENV=production\\&& ' : 'export NODE_ENV=production && ';
 // Building Client
@@ -56,9 +54,9 @@ gulp.task('webpack:build',
 gulp.task('webpack:dev',
   shell.task([
     `${path.join(
-          '.', 'node_modules', '.bin', 'webpack-dev-server')
-             } --progress --profile --colors --config webpack.config.js`],
-      { cwd: path.join(__dirname, 'client') }));
+      '.', 'node_modules', '.bin', 'webpack-dev-server')
+    } --progress --profile --colors --config webpack.config.js`],
+    { cwd: path.join(__dirname, 'client') }));
 
 gulp.task('install', gulpSequence('install:client', 'install:server', 'build'));
 gulp.task('build', gulpSequence('webpack:build:clean', 'webpack:build'));
