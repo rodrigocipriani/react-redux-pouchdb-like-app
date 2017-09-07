@@ -1,11 +1,16 @@
 /* eslint-disable linebreak-style */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const CacheManifestPlugin = require('cachemanifest-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
+const manifest = require('./assets/manifest.json');
 
-const withHash = false;
+
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
+const withHash = IS_PRODUCTION;
 const config = {
   assetsFolder: path.resolve(__dirname, 'assets'),
   imageFolder: path.resolve(__dirname, 'assets'),
@@ -39,7 +44,7 @@ const webpackConfig = {
     modules: [config.sourceFolder, 'node_modules'],
   },
   watch: true,
-  devtool: config.isProduction ? 'cheap-module-source-map' : 'eval',
+  devtool: !config.isProduction ? 'cheap-module-source-map' : 'eval',
   devServer: {
     contentBase: config.sourceFolder,
     historyApiFallback: true,
@@ -65,7 +70,7 @@ const webpackConfig = {
     },
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.vue\.js$/,
         loader: 'babel-loader',
@@ -114,6 +119,26 @@ const webpackConfig = {
           }],
         }),
       },
+      {
+        test: /\.(png|jpg|gif)$/,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'url-loader',
+          options: {
+            // limit: 8192,
+          },
+        }],
+      },
+      {
+        test: /\.(json)$/,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'url-loader',
+          options: {
+            // limit: 8192,
+          },
+        }],
+      },
     ],
   },
   plugins: [
@@ -127,12 +152,35 @@ const webpackConfig = {
       filename: config.vendorsName,
       minChunks: 2,
     }),
+    new ManifestPlugin({
+      fileName: 'manifest.json',
+      // basePath: '/app/',
+      seed: manifest,
+    }),
+    new CacheManifestPlugin({
+      // cache: ['main.js'],
+      network: ['*'],
+      // fallback: ['failwhale.jpg'],
+      // settings: ['prefer-online'],
+      exclude: ['manifest.json', /node_modules/],  // Exclude file.txt and all .js files
+      // exclude: ['file.txt', /.*\.js$/],  // Exclude file.txt and all .js files
+      output: 'offline.manifest',
+    }),
+    new CopyWebpackPlugin(
+      [
+        { from: config.assetsFolder },
+      ],
+      {
+        ignore: ['index.html', 'manifest.json'],
+        copyUnmodified: true,
+      },
+    ),
   ],
 };
 
 /*
-* If production
-* */
+ * If production
+ * */
 if (config.isProduction) {
   webpackConfig.plugins.push(
     new webpack.optimize.ModuleConcatenationPlugin(),
@@ -150,8 +198,17 @@ if (config.isProduction) {
 }
 
 /*
-* If not production
-* */
+ * If production
+ * */
+if (config.isProduction) {
+  // webpackConfig.plugins.push(
+  //   new webpack.HotModuleReplacementPlugin(),
+  // );
+}
+
+/*
+ * If not production
+ * */
 if (!config.isProduction) {
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),

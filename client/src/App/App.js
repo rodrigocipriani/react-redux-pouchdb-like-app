@@ -9,6 +9,7 @@ import Button from 'es2k-react-components/material/components/Button';
 import TextField from 'es2k-react-components/material/components/TextField';
 import * as appActions from './appActions';
 import BigListComponent from './BigListComponent';
+import hacker from './hacker.jpg';
 
 const styles = theme => ({
   root: {
@@ -27,9 +28,9 @@ class App extends PureComponent {
 
   render() {
     const {
-      total, add, addText, text, reset, biglist, criarListaServer,
-      criarListaClassic, criarListaClient, classes,
-    } = this.props;
+            total, add, addText, text, reset, biglist, criarListaServer,
+            criarListaClassic, criarListaClient, classes,
+          } = this.props;
 
 
     return (
@@ -38,6 +39,9 @@ class App extends PureComponent {
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <Typography type="display2" gutterBottom> React App</Typography>
+            <img style={{ width: 200 }} src={hacker}/>
+
+            <br/><br/>
           </Grid>
 
           <Grid item xs={12}>
