@@ -1,6 +1,6 @@
 module.exports = (app) => {
   const passport        = require('passport');
-  const config          = require('../../config/config');
+  const config          = require('../../../config');
   const Erro            = require('../util/Erro');
   const UsuariosService = app.services.usuarioService;
   const controller      = {};

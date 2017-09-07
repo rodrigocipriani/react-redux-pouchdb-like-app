@@ -2,7 +2,7 @@
  * Evite alterar este arquivo
  * */
 
-const config = require('./config');
+const config = require('../config');
 
 const express = require('express');
 const path = require('path');
@@ -16,6 +16,8 @@ const modRewrite = require('connect-modrewrite');
 const redisStore = require('connect-redis')(session);
 const passport = require('passport');
 
+console.log('$$$$$$$$$$$$$$$$$', config);
+
 module.exports = () => {
   const app = express();
   const port = process.env.PORT || config.port;
@@ -24,6 +26,8 @@ module.exports = () => {
      * Configurações gerais
      * */
   app.set('port', port);
+
+  app.set('views', './app/views');
 
   /**
    * Reescrevendo a url para sempre cair no index.html
@@ -81,7 +85,7 @@ module.exports = () => {
      * Carga de módulos
      * */
   consign({
-    cwd: path.join(__dirname, '..', 'app')
+    cwd: path.join(__dirname, '.', 'app')
     // cwd: path.join('server', 'app')
   })
         .include(path.join('models', 'modelo.js'))

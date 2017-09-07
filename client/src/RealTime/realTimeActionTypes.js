@@ -1,4 +1,4 @@
-export const appActionTypes = {
+export const realTimeActionTypes = {
   ADD: 'ADD',
   ADD_TEXTO: 'ADD_TEXTO',
   RESET_TOTAL: 'RESET_TOTAL',

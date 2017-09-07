@@ -1,9 +1,9 @@
 // import { UiAlert, UiButton } from 'keen-ui';
 import UiButton from 'keen-ui/lib/UiButton';
 import connect from 'es2k-helpers/vue-redux-connect/connect';
-import { appActionTypes } from './appActionTypes';
+import { realTimeActionTypes } from './realTimeActionTypes';
 
-const App = {
+const RealTime = {
   data: () => ({
     isRed: true,
   }),
@@ -26,7 +26,7 @@ const App = {
   render(h) {
     return (
         <div class={{ 'is-red': this.isRed }}>
-          <h2>Vue App</h2>
+          <h2>Vue RealTime</h2>
           <ui-button onClick={this.add} type="primary">Add from Vue</ui-button>
           <div>Total: {this.total}</div>
         </div>
@@ -36,7 +36,7 @@ const App = {
 
 function mapStateToProps(state) {
   return {
-    total: state.appStore.total,
+    total: state.realTimeStore.total,
   };
 }
 
@@ -44,11 +44,11 @@ function mapActionToProps(dispatch) {
   return {
     add() {
       dispatch({
-        type: appActionTypes.ADD,
+        type: realTimeActionTypes.ADD,
         // data: { 1 },
       });
     },
   };
 }
 
-export default connect(mapStateToProps, mapActionToProps)(App);
+export default connect(mapStateToProps, mapActionToProps)(RealTime);

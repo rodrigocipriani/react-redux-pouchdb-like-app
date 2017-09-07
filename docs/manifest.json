@@ -48,8 +48,8 @@
     }
   ],
   "splash_pages": null,
-  "app.js": "app-7a25b4c4dabe89b1ad11.bundle.js",
-  "appReact.js": "appReact-7a25b4c4dabe89b1ad11.bundle.js",
-  "vendors.css": "vendors-style-7a25b4c4dabe89b1ad11.css",
-  "vendors.js": "vendors-7a25b4c4dabe89b1ad11.js"
+  "app.js": "app-bbfa014a3258b5f25d31.bundle.js",
+  "appReact.js": "appReact-bbfa014a3258b5f25d31.bundle.js",
+  "vendors.css": "vendors-style-bbfa014a3258b5f25d31.css",
+  "vendors.js": "vendors-bbfa014a3258b5f25d31.js"
 }

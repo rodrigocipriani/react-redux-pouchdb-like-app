@@ -2,10 +2,10 @@
 
 module.exports = function (app) {
   const service = {};
-  const extratoModel = app.models.modelo.extratoModel;
+  const realTimeModel = app.models.modelo.realTimeModel;
 
   service.findAll = () => {
-    return extratoModel.findAll();
+    return realTimeModel.findAll();
   };
 
   return service;

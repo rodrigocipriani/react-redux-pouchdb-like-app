@@ -1,5 +1,5 @@
 module.exports = {
-  port             : 3000,
+  port: 3000,
   // corsOriginsAccept: ['*']
   corsOriginsAccept: [
     'http://localhost',
@@ -11,6 +11,6 @@ module.exports = {
     'localhost:8000',
     'http://192.168.1.107:8000',
     'http://192.168.1.103:8000',
-    '127.0.0.1:8000'
-  ]
+    '127.0.0.1:8000',
+  ],
 };

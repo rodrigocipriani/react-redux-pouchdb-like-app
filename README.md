@@ -21,7 +21,7 @@ App with:
 
 ## How to Development ##
 
-- Clone this repository `git clone https://github.com/rodrigocipriani/condominio.git`
+- Clone this repository `git clone https://github.com/rodrigocipriani/like.git`
 - Intall dependencies `npm i` or `yarn`
 - Start desenv `yarn dev` ou `npm run dev`
 - Open on browser `localhost:8080`

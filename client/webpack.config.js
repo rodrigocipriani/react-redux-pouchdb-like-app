@@ -157,24 +157,6 @@ const webpackConfig = {
       // basePath: '/app/',
       seed: manifest,
     }),
-    new CacheManifestPlugin({
-      // cache: ['main.js'],
-      network: ['*'],
-      // fallback: ['failwhale.jpg'],
-      // settings: ['prefer-online'],
-      exclude: ['manifest.json', /node_modules/],  // Exclude file.txt and all .js files
-      // exclude: ['file.txt', /.*\.js$/],  // Exclude file.txt and all .js files
-      output: 'offline.manifest',
-    }),
-    new CopyWebpackPlugin(
-      [
-        { from: config.assetsFolder },
-      ],
-      {
-        ignore: ['index.html', 'manifest.json'],
-        copyUnmodified: true,
-      },
-    ),
   ],
 };
 
@@ -188,21 +170,34 @@ if (config.isProduction) {
   webpackConfig.plugins.push(
     new webpack.optimize.UglifyJsPlugin(),
   );
+  webpackConfig.plugins.push(
+    new CacheManifestPlugin({
+      // cache: ['main.js'],
+      network: ['*'],
+      // fallback: ['failwhale.jpg'],
+      // settings: ['prefer-online'],
+      exclude: ['manifest.json', /node_modules/],  // Exclude file.txt and all .js files
+      // exclude: ['file.txt', /.*\.js$/],  // Exclude file.txt and all .js files
+      output: 'offline.manifest',
+    }),
+  );
+  webpackConfig.plugins.push(
+    new CopyWebpackPlugin(
+      [
+        { from: config.assetsFolder },
+      ],
+      {
+        ignore: ['index.html', 'manifest.json'],
+        copyUnmodified: true,
+      },
+    ),
+  );
   // webpackConfig.plugins.push(
   //   new webpack.optimize.CommonsChunkPlugin({
   //     name: 'vendors',
   //     filename: config.vendorsName,
   //     minChunks: 2,
   //   }),
-  // );
-}
-
-/*
- * If production
- * */
-if (config.isProduction) {
-  // webpackConfig.plugins.push(
-  //   new webpack.HotModuleReplacementPlugin(),
   // );
 }
 

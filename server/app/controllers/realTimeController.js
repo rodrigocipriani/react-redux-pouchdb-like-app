@@ -1,11 +1,12 @@
+const config = require('../../../config');
 
-const urlConexao = 'https://rodrigocipriani:LQP1wqj9PQ@couchdb.cloudno.de/condominio';
-const userStore = require('nano')(urlConexao);
+const couchDBUrlConnector = config.couchDB.urlConnector;
+const userStore = require('nano')(couchDBUrlConnector);
 
 module.exports = (app) => {
   const controller = {};
   const Erro = app.util.Erro;
-  const ExtratoService = app.services.extratoService;
+  const RealTimeService = app.services.realTimeService;
 
   controller.criarlistaServer = function (req, res) {
     const tamanho = req.params.tamanho;
@@ -136,10 +137,10 @@ module.exports = (app) => {
   };
 
   controller.findAll = function (req, res) {
-    ExtratoService.findAll().then((extrato) => {
-      // console.log('extrato', extrato);
-      // setTimeout(() => { res.send(extrato); }, 2000);
-      res.send(extrato);
+    RealTimeService.findAll().then((realTime) => {
+      // console.log('realTime', realTime);
+      // setTimeout(() => { res.send(realTime); }, 2000);
+      res.send(realTime);
     }).catch((erro) => {
       return res.status(400).send(Erro.getMensagemErro(erro));
     });

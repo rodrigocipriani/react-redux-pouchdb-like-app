@@ -3,7 +3,7 @@
  */
 
 
-const config    = require('../../config/config');
+const config    = require('../../../config');
 const path      = require('path');
 const fs        = require('fs');
 const Sequelize   = require('sequelize');

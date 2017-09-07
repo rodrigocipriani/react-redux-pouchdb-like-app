@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const extratoModel = sequelize.define('extratoModel', {
+  const realTimeModel = sequelize.define('realTimeModel', {
     id: {
       type         : DataTypes.INTEGER,
       allowNull    : false,
@@ -20,9 +20,9 @@ module.exports = function (sequelize, DataTypes) {
     },
 
   }, {
-    tableName      : 'extrato',
+    tableName      : 'realTime',
     freezeTableName: true
   });
 
-  return extratoModel;
+  return realTimeModel;
 };

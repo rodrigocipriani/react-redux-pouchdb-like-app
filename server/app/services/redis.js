@@ -5,7 +5,7 @@
 
 module.exports = (app) => {
   const service             = {};
-  const config              = require('../../config/config');
+  const config              = require('../../../config');
   const redis               = require('redis');
   const cliente = redis.createClient(config.redis.port, config.redis.host, {
     auth_pass     : config.redis.pass,

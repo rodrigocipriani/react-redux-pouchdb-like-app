@@ -4,7 +4,7 @@ import 'normalize.css';
 import reduxStorePlugin from 'es2k-helpers/vue-redux-connect/reduxStorePlugin';
 import store from './store';
 import './main.css';
-import App from './App/App.vue';
+import App from './RealTime/RealTime.vue';
 
 
 Vue.use(reduxStorePlugin);

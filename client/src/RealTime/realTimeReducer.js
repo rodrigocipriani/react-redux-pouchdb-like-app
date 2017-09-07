@@ -1,4 +1,4 @@
-import { appActionTypes } from './appActionTypes';
+import { realTimeActionTypes } from './realTimeActionTypes';
 
 const initialState = {
   total: 0,
@@ -9,18 +9,17 @@ const initialState = {
 
 const actionsMap = {
 
-  [appActionTypes.ADD]: (state, action) => {
+  [realTimeActionTypes.ADD]: (state, action) => {
     const total = action.payload ? parseInt(action.payload, 0) : state.total + 1;
     return { ...state, total };
   },
 
-  [appActionTypes.ADD_TEXTO]: (state, action) => {
+  [realTimeActionTypes.ADD_TEXTO]: (state, action) => {
     const text = action.payload ? action.payload : state.text;
     return { ...state, text };
   },
 
-  [appActionTypes.CRIAR_LISTA_CLIENT]: (state, action) => {
-    console.log('biglist111');
+  [realTimeActionTypes.CRIAR_LISTA_CLIENT]: (state, action) => {
     const biglist = [];
     for (let i = 0; i < state.total; i++) {
       biglist.push({
@@ -28,34 +27,24 @@ const actionsMap = {
         nome: `item ${i}`,
       });
     }
-    console.log('biglist', biglist);
     return { ...state, biglist };
   },
 
-  [appActionTypes.CRIAR_LISTA_CLASSIC]: (state, action) => {
-    console.log('*-*-*-*-*-*');
-    console.log('action', action);
-    console.log('state', state);
+  [realTimeActionTypes.CRIAR_LISTA_CLASSIC]: (state, action) => {
     if (action.ready) {
       const biglist = action.result.data;
-      console.log('biglist', biglist);
       return { ...state, biglist };
     }
     return state;
   },
 
-  [appActionTypes.RESET_TOTAL]: (state, action) => {
-    console.log('------------------');
-    console.log('action', action);
-    console.log('state', state);
-    return state;
-  },
+  [realTimeActionTypes.RESET_TOTAL]: (state, action) => state,
 
 };
 
-const app = (state = initialState, action = {}) => {
+const realTime = (state = initialState, action = {}) => {
   const fn = actionsMap[action.type];
   return fn ? fn(state, action) : state;
 };
 
-export { app };
+export default realTime;

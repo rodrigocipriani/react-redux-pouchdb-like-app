@@ -7,8 +7,8 @@ import Paper from 'material-ui/Paper';
 import Typography from 'es2k-react-components/material/style/Typography';
 import Button from 'es2k-react-components/material/components/Button';
 import TextField from 'es2k-react-components/material/components/TextField';
-import * as appActions from './appActions';
-import BigListComponent from './BigListComponent';
+import * as realTimeActions from './realTimeActions';
+import RealTimeBigListComponent from './RealTimeBigListComponent';
 import hacker from './hacker.jpg';
 
 const styles = theme => ({
@@ -24,7 +24,7 @@ const styles = theme => ({
 });
 
 
-class App extends PureComponent {
+class RealTime extends PureComponent {
 
   render() {
     const {
@@ -38,7 +38,7 @@ class App extends PureComponent {
 
         <Grid container spacing={0}>
           <Grid item xs={12}>
-            <Typography type="display2" gutterBottom> React App</Typography>
+            <Typography type="display2" gutterBottom> React RealTime </Typography>
             <img style={{ width: 200 }} src={hacker}/>
 
             <br/><br/>
@@ -87,7 +87,7 @@ class App extends PureComponent {
 
           <Grid item xs={12}>
 
-            <BigListComponent list={biglist}/>
+            <RealTimeBigListComponent list={biglist}/>
 
           </Grid>
 
@@ -100,43 +100,43 @@ class App extends PureComponent {
   }
 }
 
-App.propTypes = {
+RealTime.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-App.defaultProps = {};
+RealTime.defaultProps = {};
 
 function mapStateToProps(state) {
   return {
-    total: state.appStore.total,
-    text: state.appStore.text,
-    biglist: state.appStore.biglist,
+    total: state.realTimeStore.total,
+    text: state.realTimeStore.text,
+    biglist: state.realTimeStore.biglist,
   };
 }
 
 function mapActionToProps(dispatch) {
   return {
     add(total) {
-      dispatch(appActions.add(total));
+      dispatch(realTimeActions.add(total));
     },
     addText(text) {
-      dispatch(appActions.addText(text));
+      dispatch(realTimeActions.addText(text));
     },
     reset() {
-      dispatch(appActions.reset());
+      dispatch(realTimeActions.reset());
     },
     criarListaServer(total) {
-      dispatch(appActions.criarListaServer(total));
+      dispatch(realTimeActions.criarListaServer(total));
     },
     criarListaClassic(total) {
-      dispatch(appActions.criarListaClassic(total));
+      dispatch(realTimeActions.criarListaClassic(total));
     },
     criarListaClient() {
-      dispatch(appActions.criarListaClient());
+      dispatch(realTimeActions.criarListaClient());
     },
   };
 }
 
 export default connect(mapStateToProps, mapActionToProps)(
-  withStyles(styles)(App),
+  withStyles(styles)(RealTime),
 );

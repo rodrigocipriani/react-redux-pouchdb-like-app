@@ -1,6 +1,6 @@
 
 
-const config = require('../../config/config');
+const config = require('../../../config');
 const nodemailer = require('nodemailer');
 const cron = require('cron');
 const EmailAddressRequiredError = new Error('Erro ao enviar email:');

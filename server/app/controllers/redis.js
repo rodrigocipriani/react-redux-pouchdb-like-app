@@ -1,6 +1,6 @@
 // todo : onde está usando este modulo?
 module.exports = function (app) {
-  const config = require('../../config/config');
+  const config = require('../../../config');
   const redis = require('redis');
   const cliente = redis.createClient(config.redis.port, config.redis.host, {
     auth_pass     : config.redis.pass,

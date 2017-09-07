@@ -7,11 +7,16 @@
     "dev": "gulp dev",
     "build": "gulp build",
     "deploy": "gulp deploy",
-    "postinstall": "gulp install",
+    "-postinstall": "gulp install",
     "test": "jest"
   },
   "dependencies": {
     "babel-eslint": "^7.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-vue": "^1.2.1",
+    "es2k-helpers": "0.0.2",
     "eslint": "^3.10.1",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-html": "^3.2.0",

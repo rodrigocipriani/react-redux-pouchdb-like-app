@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import 'normalize.css';
 import './main.css';
-import App from './App/App';
-import config from '../config';
+import App from './RealTime/RealTime';
+import config from '../../config';
 
 console.log('store', store);
 
