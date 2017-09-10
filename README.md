@@ -86,6 +86,7 @@ App with:
 ## Todo ##
 
 - [ ] Fix Heroku deploy
+- [ ] Why theres an error on inport .jsx file?
 - [ ] Apply those concepts:
     - https://github.com/JedWatson/classnames
     - https://github.com/cssinjs/react-jss#custom-setup
