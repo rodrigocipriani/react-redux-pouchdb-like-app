@@ -86,6 +86,7 @@ App with:
 ## Todo ##
 
 - [ ] Fix Heroku deploy
+- [ ] Clean project dependencies after remove gulp
 - [ ] Why theres an error on inport .jsx file?
 - [ ] Apply those concepts:
     - https://github.com/JedWatson/classnames

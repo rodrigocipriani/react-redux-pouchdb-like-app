@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --profile --colors --config webpack.config.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --progress --profile --colors --config webpack.config.js",
+    "dev_": "webpack-dev-server --progress --profile --colors --config webpack.config.js",
     "build": "NODE_ENV=production webpack --config webpack.config.js",
     "build-production": "NODE_ENV=production webpack -p --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "es2k-helpers": "0.0.2",
-    "es2k-react-components": "0.0.8",
+    "es2k-react-components": "0.0.9",
     "keen-ui": "^1.0.0",
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.5",
@@ -43,6 +44,7 @@
     "babel-preset-vue": "^1.2.1",
     "cachemanifest-webpack-plugin": "^1.0.2",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.5",
     "css-loader": "^0.28.5",
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.1.3",

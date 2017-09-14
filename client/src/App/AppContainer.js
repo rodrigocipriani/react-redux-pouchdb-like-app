@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Redirect } from 'react-router-dom';
-import BodyContainer from '../../../../es2k-react-components/material/components/Body';
+import BodyContainer from 'es2k-react-components/material/components/Body';
 import Routes, { PUBLIC_ROUTES, routes } from '../Router';
 import appConnector from './appConnector';
 import authConnector from '../Auth/authConnector';

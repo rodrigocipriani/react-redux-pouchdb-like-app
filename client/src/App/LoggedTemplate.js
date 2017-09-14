@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import { LinearProgress, FabButton, FabButtonOption, Navigation } from '../../../../es2x/reactComponents';
 import MenuLateral from './components/MenuLateral';
 import bgMenuLateral from './hacker.jpg';
 
