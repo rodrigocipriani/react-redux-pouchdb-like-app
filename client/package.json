@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "es2k-helpers": "0.0.2",
-    "es2k-react-components": "0.0.9",
+    "es2k-react-components": "0.0.10",
     "keen-ui": "^1.0.0",
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.5",

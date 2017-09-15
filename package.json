@@ -6,11 +6,17 @@
     "start:client:dev": "npm run dev --prefix client",
     "start:server:dev": "npm run dev --prefix server",
     "dev": "npm-run-all -p start:server:dev start:client:dev ",
-    "start": "node server/servidor.js",
+    "build:client": "npm run build --prefix client",
+    "install:client": "npm i --prefix client",
+    "install:server": "npm i --prefix server",
+    "start": "npm start --prefix server",
+    "postinstall": "npm-run-all -s install:client install:server build:client start",
+
+    "_start": "node server/servidor.js",
     "dev_": "gulp dev",
     "build": "gulp build",
     "deploy": "gulp deploy",
-    "-postinstall": "gulp install",
+    "_postinstall": "gulp install",
     "test": "jest"
   },
   "devDependencies": {

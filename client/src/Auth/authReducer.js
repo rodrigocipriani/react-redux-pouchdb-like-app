@@ -18,11 +18,17 @@ const initialState = {
 const actionsMap = {
 
   [authActionTypes.SIGNIN]: (state, action) => {
-    const user = action.payload;
-    // if (action.complete) {
-    //   return gravarUsuario(user, state);
-    // }
-    return { ...state, isAuthenticated: !!user, user };
+    if(action.ready){
+
+      const user = action.result.data;
+      // if (action.complete) {
+      //   return gravarUsuario(user, state);
+      // }
+      return { ...state, isAuthenticated: !!user, user };
+    }
+    return state;
+    
+
   },
 
   [authActionTypes.SIGNUP]: (state, action) => {

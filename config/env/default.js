@@ -1,5 +1,5 @@
 module.exports = {
-  publicFolder: './client/build',
+  publicFolder: '../client/build',
   port: 80,
   urls: {
     api: 'http://localhost:3000/api',

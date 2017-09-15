@@ -1,0 +1,8 @@
+node_modules
+build
+*.log*
+.idea
+yarn.lock
+package-lock.json
+dist
+webpack-dev-server

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
+import Navigation from 'es2k-react-components/material/components/Navigation';
 import MenuLateral from './components/MenuLateral';
 import bgMenuLateral from './hacker.jpg';
 
@@ -33,7 +34,7 @@ class LoggedTemplate extends Component {
         <div>
           <div>{children}</div>
 
-          <FabButton
+          {/* <FabButton
             options={ [
               {
                 label: 'Adicionar novo ponto',
@@ -41,7 +42,7 @@ class LoggedTemplate extends Component {
                 onTouchTap: this.openAddPonto,
               },
             ] }
-          />
+          /> */}
         </div>
       </Navigation>
     );

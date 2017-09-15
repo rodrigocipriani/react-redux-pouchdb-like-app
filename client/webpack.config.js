@@ -43,7 +43,7 @@ const webpackConfig = {
   resolve: {
     modules: [config.sourceFolder, 'node_modules'],
   },
-  watch: true,
+  watch: !config.isProduction,
   devtool: !config.isProduction ? 'cheap-module-source-map' : 'eval',
   devServer: {
     contentBase: config.sourceFolder,
