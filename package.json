@@ -10,7 +10,7 @@
     "install:client": "npm i --prefix client",
     "install:server": "npm i --prefix server",
     "start": "npm start --prefix server",
-    "postinstall": "npm-run-all -s install:client install:server build:client",
+    "postinstall": "npm-run-all -s install:client install:server build:client start",
 
     "_start": "node server/servidor.js",
     "dev_": "gulp dev",
