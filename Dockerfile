@@ -1,7 +1,18 @@
 FROM node:latest
 MAINTAINER Rodrigo Cipriani da Rosa
-COPY . /var/www
-WORKDIR /var/www
+RUN mkdir -p /opt/likeapp
+COPY . /opt/likeapp
 
-ENTRYPOINT npm install
+WORKDIR /opt/likeapp
+RUN npm install && npm cache clean --force
+
+WORKDIR /opt/likeapp/client
+RUN npm install && npm cache clean --force
+
+WORKDIR /opt/likeapp/server
+RUN npm install && npm cache clean --force
+
+WORKDIR /opt/likeapp
+ENTRYPOINT npm start
+
 EXPOSE 3000
