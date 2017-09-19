@@ -1,0 +1,97 @@
+# todo's
+# - use npm-shrinkwrap.json
+# - Clear / and /client unused node_modules after build
+
+
+FROM node:8.5.0
+MAINTAINER Rodrigo Cipriani da Rosa
+
+# Create another user and do not use root user
+RUN useradd --user-group --create-home --shell /bin/false app
+# &&\
+#    npm install --global npm@5.4.2
+
+
+# home app dir
+ARG HOME=/home/app
+ARG CLIENT=/home/app/client
+ARG SERVER=/home/app/server
+#ENV HOME=${HOME}
+
+RUN npm cache clean --force
+
+#
+# working on dir /likeapp
+#
+WORKDIR ${HOME}
+
+# copy files
+USER root
+COPY package.json ${HOME}
+RUN chown -R app:app ${HOME}/*
+
+# install dependencies
+USER app
+RUN npm install --silent --progress=false
+
+
+#
+# working on dir /likeapp/server
+#
+WORKDIR ${SERVER}
+
+# copy files
+USER root
+COPY package.json ${SERVER}
+RUN chown -R app:app ${SERVER}/*
+
+# install dependencies
+USER app
+RUN npm install --silent --progress=false
+
+
+#
+# working on dir /likeapp/client
+#
+WORKDIR ${CLIENT}
+
+# copy files
+USER root
+COPY package.json ${CLIENT}
+RUN chown -R app:app ${CLIENT}/*
+
+# install dependencies
+USER app
+RUN npm install --silent --progress=false && npm run build
+
+# TODO: DO REMOVE UNUSED FILES FROM / AND /CLIENT
+
+#
+# coping ready files
+#
+USER root
+COPY . ${HOME}
+RUN chown -R app:app ${HOME}/*
+USER app
+
+WORKDIR ${SERVER}
+ENTRYPOINT npm start
+EXPOSE 3000
+
+
+#RUN mkdir -p /opt/likeapp
+#COPY . /opt/likeapp
+
+#WORKDIR /opt/likeapp
+#RUN npm install && npm cache clean --force
+
+#WORKDIR /opt/likeapp/server
+#RUN npm install && npm cache clean --force
+
+#WORKDIR /opt/likeapp/client
+#RUN npm install && npm cache clean --force && npm run build
+
+#WORKDIR /opt/likeapp
+#ENTRYPOINT npm start
+
+#EXPOSE 3000
