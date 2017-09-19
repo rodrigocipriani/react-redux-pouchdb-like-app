@@ -5,6 +5,7 @@ import Navigation from 'es2k-react-components/material/components/Navigation';
 import MenuLateral from './components/MenuLateral';
 import bgMenuLateral from './hacker.jpg';
 
+
 class LoggedTemplate extends Component {
   openAddPonto = () => {
     console.log('abrir tela');

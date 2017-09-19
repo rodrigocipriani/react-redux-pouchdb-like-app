@@ -22,7 +22,7 @@ module.exports = () => {
   const app = express();
   const port = process.env.PORT || config.port;
 
-    /**
+  /**
      * Configurações gerais
      * */
   app.set('port', port);
@@ -33,11 +33,13 @@ module.exports = () => {
    * Reescrevendo a url para sempre cair no index.html
    * (correção refresh da tela)
    * */
-  app.use(modRewrite(
-        ['!\\api/|\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg|\\.woff|\\.woff2|\\.ttf|\\.manifest$ /index.html [L]']
-    ));
+  app.use(
+    modRewrite([
+      '!\\api/|\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg|\\.woff|\\.woff2|\\.ttf|\\.manifest$ /index.html [L]'
+    ])
+  );
 
-    /**
+  /**
      * servir a aplicação no frontend
      * */
   app.use(express.static(config.publicFolder));
@@ -48,17 +50,19 @@ module.exports = () => {
 
   app.use(cookieParser(config.secretCookie));
 
-    /**
+  /**
      * Configuração para cross domain
      * */
-  app.use(cors({
-    origin     : config.corsOriginsAccept,
-     // allowedHeaders: ['Content-Type', 'Authorization'],
-     //  additionalHeaders: ['cache-control', 'x-requested-with'],
-    credentials: true
-  }));
+  app.use(
+    cors({
+      origin     : config.corsOriginsAccept,
+      // allowedHeaders: ['Content-Type', 'Authorization'],
+      //  additionalHeaders: ['cache-control', 'x-requested-with'],
+      credentials: true
+    })
+  );
 
-    /**
+  /**
      * Configuração do redis
      * */
   const configuracaoRedis = config.redis;
@@ -66,42 +70,48 @@ module.exports = () => {
     auth_pass     : config.redis.pass,
     no_ready_check: true
   });
-  app.use(session(
-    {
+  app.use(
+    session({
       secret           : config.secretSession,
       store            : new redisStore(configuracaoRedis),
       resave           : false,
       saveUninitialized: false
-    }
-    ));
+    })
+  );
 
-    /**
+  /**
      * Inicialização do passport
      * */
   app.use(passport.initialize());
   app.use(passport.session());
 
-    /**
+  /**
      * Carga de módulos
      * */
   consign({
     cwd: path.join(__dirname, '.', 'app')
     // cwd: path.join('server', 'app')
   })
-        .include(path.join('models', 'modelo.js'))
-        .then('util')
-        .then('services')
-        .then('controllers')
-        .then('passport')
-        .then('routes')
-        .into(app);
+    .include(path.join('models', 'modelo.js'))
+    .then('util')
+    .then('services')
+    .then('controllers')
+    .then('passport')
+    .then('routes')
+    .into(app);
+
+  app.get('/healthz', (req, res) => {
+    // do app logic here to determine if app is truly healthy
+    // you should return 200 if healthy, and anything else will fail
+    // if you want, you should be able to restrict this to localhost (include ipv4 and ipv6)
+    res.send('I am happy and healthy\n');
+  });
 
   app.get('*', (req, res) => {
     res.status(404).render('404.ejs');
   });
 
-
-    /*
+  /*
 
     Carga dos modulos
 
@@ -152,14 +162,13 @@ module.exports = () => {
      carregarModulos(appDir, [], app.routes, 'Route.js');
      */
 
-
-    /**
+  /**
      * Tratamento de erros
      * */
   app.use((erro, req, res, next) => {
     console.log(erro.stack);
-        // res.header("Access-Control-Allow-Origin", "*");
-        // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    // res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     if (res.headersSent) {
       return next(erro);
     }
@@ -173,4 +182,3 @@ module.exports = () => {
 
   return app;
 };
-
