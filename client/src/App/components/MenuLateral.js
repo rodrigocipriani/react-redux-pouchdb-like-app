@@ -14,7 +14,7 @@ class MenuLateral extends Component {
 
   render() {
     return (
-      <List>
+      <List style={{backgroundColor: '#ffffff'}}>
 
         <Link to={ routes.EXTRATO.path }>
           <ListItem button>

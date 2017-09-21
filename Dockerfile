@@ -1,7 +1,7 @@
 # todo's
 # - use npm-shrinkwrap.json
 # - Clear / and /client unused node_modules after build
-# - Before npm install, remove node_modules or don't copy then
+
 
 FROM node:8.5.0
 MAINTAINER Rodrigo Cipriani da Rosa
