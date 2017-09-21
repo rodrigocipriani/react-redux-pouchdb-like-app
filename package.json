@@ -10,12 +10,11 @@
     "install:client": "npm i --prefix client",
     "install:server": "npm i --prefix server",
     "start": "npm start --prefix server",
-    "_postinstall": "npm-run-all -s install:client install:server build:client",
+    "_postinstall": "gulp install",
     "_start": "node server/servidor.js",
     "dev_": "gulp dev",
     "build": "gulp build",
     "deploy": "gulp deploy",
-    "_postinstall": "gulp install",
     "test": "jest"
   },
   "devDependencies": {

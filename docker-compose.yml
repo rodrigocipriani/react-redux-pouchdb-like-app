@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  likeapp:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    image: rodrigocipriani/likeapp
+    container_name: likeapp
+    ports: 
+      -  "3000:3000"
+    networks: 
+      - production-network
+networks: 
+  production-network:
+    driver: bridge
