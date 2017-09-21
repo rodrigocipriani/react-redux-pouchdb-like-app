@@ -24,12 +24,12 @@ module.exports = {
     // ttl :  260
   },
   postgres: {
-    usuario: 'pthhbdxn',
-    senha: 'YGpZA5KEVBMht0saqWGePAHvOAb3CWtp',
-    db: 'pthhbdxn',
+    usuario: process.env.POSTGRES_USER,
+    senha: process.env.POSTGRES_PASSWORD,
+    db: process.env.POSTGRES_DB,
     config: {
-      host: 'horton.elephantsql.com',
-      port: 5432,
+      host: process.env.POSTGRES_HOST,
+      port: process.env.POSTGRES_PORT,
       dialect: 'postgres',
       dialectOptions: {
         ssl: true,
@@ -40,6 +40,25 @@ module.exports = {
       pool: { max: 9, min: 0, idle: 10000 },
     },
   },
+
+  // postgres: {
+  //   usuario: 'pthhbdxn',
+  //   senha: 'YGpZA5KEVBMht0saqWGePAHvOAb3CWtp',
+  //   db: 'pthhbdxn',
+  //   config: {
+  //     host: 'horton.elephantsql.com',
+  //     port: 5432,
+  //     dialect: 'postgres',
+  //     dialectOptions: {
+  //       ssl: true,
+  //     },
+  //     // logging : false,
+  //     freezeTableName: true,
+  //     define: { timestamps: false },
+  //     pool: { max: 9, min: 0, idle: 10000 },
+  //   },
+  // },
+
   // postgres: {
   //   usuario: process.env.POSTGRES_USER,
   //   senha  : process.env.POSTGRES_PASSWD,

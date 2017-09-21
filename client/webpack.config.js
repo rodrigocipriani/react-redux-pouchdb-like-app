@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const path = require('path');
 const manifest = require('./assets/manifest.json');
 
-
 const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const withHash = IS_PRODUCTION;
 const config = {
@@ -88,15 +87,11 @@ const webpackConfig = {
         // ],
       },
       {
-        test   : /\.(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: [/node_modules/, /\.vue\.js$/],
         query: {
-          presets: [
-            ['es2015', { modules: false }],
-            'react',
-            'stage-0',
-          ],
+          presets: [['es2015', { modules: false }], 'react', 'stage-0'],
           // plugins: ['transform-vue-jsx'],
         },
         // include: [
@@ -113,84 +108,84 @@ const webpackConfig = {
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          use: [{
-            loader: 'css-loader',
-            options: { importLoaders: 1 },
-          }],
+          use: [
+            {
+              loader: 'css-loader',
+              options: { importLoaders: 1 },
+            },
+          ],
         }),
       },
       {
         test: /\.(png|jpg|gif)$/,
         exclude: [/node_modules/],
-        use: [{
-          loader: 'url-loader',
-          options: {
-            // limit: 8192,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              // limit: 8192,
+            },
           },
-        }],
+        ],
       },
       {
         test: /\.(json)$/,
         exclude: [/node_modules/],
-        use: [{
-          loader: 'url-loader',
-          options: {
-            // limit: 8192,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              // limit: 8192,
+            },
           },
-        }],
+        ],
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({ template: config.indexHtml }),
-    new ExtractTextPlugin({
-      filename: config.cssBundleName,
-      allChunks: true,
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendors',
-      filename: config.vendorsName,
-      minChunks: 2,
-    }),
-    new ManifestPlugin({
-      fileName: 'manifest.json',
-      // basePath: '/app/',
-      seed: manifest,
-    }),
-  ],
+  plugins: [],
 };
+
+/**
+ * Plugins
+ */
+webpackConfig.plugins.push(new HtmlWebpackPlugin({ template: config.indexHtml }));
+webpackConfig.plugins.push(
+  new ExtractTextPlugin({
+    filename: config.cssBundleName,
+    allChunks: true,
+  }),
+);
+webpackConfig.plugins.push(
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendors',
+    filename: config.vendorsName,
+    minChunks: 2,
+  }),
+);
 
 /*
  * If production
  * */
+console.log('config.isProduction', config.isProduction);
 if (config.isProduction) {
-  webpackConfig.plugins.push(
-    new webpack.optimize.ModuleConcatenationPlugin(),
-  );
-  webpackConfig.plugins.push(
-    new webpack.optimize.UglifyJsPlugin(),
-  );
+  webpackConfig.plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
+  webpackConfig.plugins.push(new webpack.optimize.UglifyJsPlugin());
   webpackConfig.plugins.push(
     new CacheManifestPlugin({
       // cache: ['main.js'],
       network: ['*'],
       // fallback: ['failwhale.jpg'],
       // settings: ['prefer-online'],
-      exclude: ['manifest.json', /node_modules/],  // Exclude file.txt and all .js files
+      exclude: ['manifest.json', /node_modules/], // Exclude file.txt and all .js files
       // exclude: ['file.txt', /.*\.js$/],  // Exclude file.txt and all .js files
       output: 'offline.manifest',
     }),
   );
   webpackConfig.plugins.push(
-    new CopyWebpackPlugin(
-      [
-        { from: config.assetsFolder },
-      ],
-      {
-        ignore: ['index.html', 'manifest.json'],
-        copyUnmodified: true,
-      },
-    ),
+    new CopyWebpackPlugin([{ from: config.assetsFolder }], {
+      ignore: ['index.html', 'manifest.json'],
+      copyUnmodified: true,
+    }),
   );
   // webpackConfig.plugins.push(
   //   new webpack.optimize.CommonsChunkPlugin({
@@ -205,9 +200,7 @@ if (config.isProduction) {
  * If not production
  * */
 if (!config.isProduction) {
-  webpackConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-  );
+  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 
 module.exports = webpackConfig;

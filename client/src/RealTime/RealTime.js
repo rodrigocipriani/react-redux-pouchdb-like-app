@@ -23,25 +23,32 @@ const styles = theme => ({
   },
 });
 
-
 class RealTime extends PureComponent {
-
   render() {
     const {
-            total, add, addText, text, reset, biglist, criarListaServer,
-            criarListaClassic, criarListaClient, classes,
-          } = this.props;
-
+      total,
+      add,
+      addText,
+      text,
+      reset,
+      biglist,
+      criarListaServer,
+      criarListaClassic,
+      criarListaClient,
+      classes,
+    } = this.props;
 
     return (
       <div className={classes.root}>
-
         <Grid container spacing={0}>
           <Grid item xs={12}>
-            <Typography type="display2" gutterBottom> React RealTime </Typography>
-            <img style={{ width: 200 }} src={hacker}/>
+            <Typography type="display2" gutterBottom>
+              React RealTime !!
+            </Typography>
+            <img style={{ width: 200 }} src={hacker} />
 
-            <br/><br/>
+            <br />
+            <br />
           </Grid>
 
           <Grid item xs={12}>
@@ -58,19 +65,14 @@ class RealTime extends PureComponent {
           </Grid>
 
           <Grid item xs={12}>
-
-            <TextField onChange={e => add(e.target.value)} value={total}/>
-
+            <TextField onChange={e => add(e.target.value)} value={total} />
           </Grid>
 
           <Grid item xs={12}>
-
-            <TextField label="Text" onChange={e => addText(e.target.value)} value={text}/>
-
+            <TextField label="Text" onChange={e => addText(e.target.value)} value={text} />
           </Grid>
 
           <Grid item xs={12}>
-
             <Button onClick={() => criarListaClassic(total)} raised color="primary">
               Criar lista (Classic)
             </Button>
@@ -82,18 +84,13 @@ class RealTime extends PureComponent {
             <Button onClick={() => criarListaClient()} raised color="primary">
               Criar lista (Client)
             </Button>
-
           </Grid>
 
           <Grid item xs={12}>
-
-            <RealTimeBigListComponent list={biglist}/>
-
+            <RealTimeBigListComponent list={biglist} />
           </Grid>
 
-          <Grid item xs={12}>
-
-          </Grid>
+          <Grid item xs={12} />
         </Grid>
       </div>
     );
@@ -137,6 +134,4 @@ function mapActionToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapActionToProps)(
-  withStyles(styles)(RealTime),
-);
+export default connect(mapStateToProps, mapActionToProps)(withStyles(styles)(RealTime));

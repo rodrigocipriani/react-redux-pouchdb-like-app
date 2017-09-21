@@ -30,6 +30,8 @@ WORKDIR ${CLIENT}
 RUN npm install && npm cache clean --force && npm run build
 
 WORKDIR ${HOME}
-ENTRYPOINT npm start
+CMD [ "npm", "run", "dev" ]
+# CMD [ "NPM", "START" ]
+#ENTRYPOINT npm start
 
 EXPOSE 3000
