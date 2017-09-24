@@ -1,3 +1,10 @@
+/**
+ * Servidor Express
+ *
+ * todo: Preencher descrições de cada bloco de código
+ * todo: Fazer o 'modRewrite' funcionar corretamente
+ */
+
 const path = require('path');
 const config = require('./config');
 const express = require('express');
@@ -8,6 +15,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const helmet = require('helmet');
 const compression = require('compression');
+const modRewrite = require('connect-modrewrite');
 // const erro         = require('bb-common/error/erro');
 const morgan = require('morgan');
 const redis = require('redis');
@@ -18,35 +26,75 @@ const ejs = require('ejs');
 // const cookie       = require('cookie-signature');
 const redisStore = require('connect-redis')(session);
 
+/**
+ *
+ */
 const redisClient = redis.createClient(config.redis.port, config.redis.host, {
   auth_pass     : config.redis.pass,
   no_ready_check: true
 });
 
 module.exports = () => {
+  /**
+   *
+   */
   const app = express();
 
+  /**
+   *
+   */
   const port = process.env.PORT || config.port;
   app.set('port', port);
-  app.set('views', './app/views');
-  app.engine('html', ejs.renderFile);
-  app.set('view engine', 'html'); // ejs
 
-  // compressão do response, performance
+  /**
+   *
+   */
+  // app.set('views', './app/views');
+  // app.engine('html', ejs.renderFile);
+  // app.set('view engine', 'html'); // ejs
+
+  /**
+   * Reescrevendo a url para sempre cair no index.html
+   * (correção refresh da tela)
+   * */
+  app.use(
+    modRewrite([
+      '!\\api/|\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg|\\.woff|\\.woff2|\\.ttf|\\.manifest$ /index.html [L]'
+    ])
+  );
+
+  /**
+   * Servir a aplicação no frontend
+   * */
+  app.use(express.static(config.publicFolder));
+
+  /**
+   * compressão do response, performance
+   */
   app.use(compression());
   app.use(morgan('dev'));
 
-  // app.use(express.static('./frontend/public'));
-
+  /**
+   *
+   */
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
   app.use(require('method-override')());
 
+  /**
+   *
+   */
   app.use(cookieParser());
 
+  /**
+   *
+   */
   const configuracaoRedis = config.redis;
   configuracaoRedis.client = redisClient;
 
+  /**
+   *
+   */
   // app.get('*', (req, res, next) => {
   //
   //   if (req.headers.token) {
@@ -59,6 +107,9 @@ module.exports = () => {
   //
   // });
 
+  /**
+   *
+   */
   app.use(
     session({
       // genid            : (req) => {
@@ -73,12 +124,21 @@ module.exports = () => {
     })
   );
 
+  /**
+   *
+   */
   app.use(auth.initialize());
   app.use(auth.session());
   // app.use(acesso.carregarSistema({codigoSistema: config.codigoSistema}));
 
+  /**
+   *
+   */
   app.use(helmet.hidePoweredBy({ setTo: 'Cobol' }));
 
+  /**
+   *
+   */
   consign({ cwd: path.join(process.cwd(), 'app') })
     .include('models/models.js')
     // .then('utils')
@@ -87,13 +147,18 @@ module.exports = () => {
     .then('routes')
     .into(app);
 
+  /**
+   *
+   */
   app.get('*', (req, res) => {
-    console.log('nao achou');
+    console.log('ROute/path not found');
     if (req.xhr) return res.status(404).send({ message: 'Endereço inexistente' });
-    res.status(404).render('404.ejs');
+    return res.status(404).render('404.ejs');
   });
 
-  // tratamento de erros
+  /**
+   * Tratamento de erros
+   */
   // app.use(erro.handler({token: config.accessToken}));
 
   return app;

@@ -4,7 +4,6 @@
 
 
 FROM node:8.5.0
-MAINTAINER Rodrigo Cipriani da Rosa
 
 # home app dir
 ARG HOME=/home/app

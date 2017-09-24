@@ -16,8 +16,6 @@ const modRewrite = require('connect-modrewrite');
 const redisStore = require('connect-redis')(session);
 const passport = require('passport');
 
-console.log('$$$$$$$$$$$$$$$$$', config);
-
 module.exports = () => {
   const app = express();
   const port = process.env.PORT || config.port;

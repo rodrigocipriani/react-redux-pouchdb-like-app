@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
-  publicFolder     : './client/build',
+  publicFolder     : path.join(process.cwd(), '..', 'client', 'build'),
   corsOriginsAccept: ['*'],
   port             : 3010,
   apiUrl           : '/api',

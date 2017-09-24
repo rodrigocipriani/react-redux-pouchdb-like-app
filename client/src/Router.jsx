@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import config from '../../config';
 
+import EmpresaListagem from './Empresa/EmpresaListagem';
 import RealTimeContainer from './RealTime/RealTime';
 import LoginPage from './Auth/LoginPage';
 import SignUpPage from './Auth/SignUpPage';
@@ -18,15 +19,19 @@ export const routes = {
   },
   LOGIN: {
     path: `${publicPath}/login`,
-    component: () => <LoginPage returnTo={ HOME_PATH }/>,
+    component: () => <LoginPage returnTo={HOME_PATH} />,
   },
   LOGOUT: {
     path: `${publicPath}/logout`,
-    component: () => <LogoutPage returnTo={ HOME_PATH }/>,
+    component: () => <LogoutPage returnTo={HOME_PATH} />,
   },
   SIGNUP: {
     path: `${publicPath}/signup`,
-    component: () => <SignUpPage returnTo={ HOME_PATH }/>,
+    component: () => <SignUpPage returnTo={HOME_PATH} />,
+  },
+  EMPRESA_LISTAGEM: {
+    path: `${publicPath}/empresa/listagem`,
+    component: EmpresaListagem,
   },
   EXTRATO: {
     path: `${publicPath}/extrato`,
@@ -38,22 +43,19 @@ export const routes = {
   },
 };
 
-export const PUBLIC_ROUTES = [
-  routes.LOGIN.path,
-  routes.LOGOUT.path,
-  routes.SIGNUP.path,
-];
+export const PUBLIC_ROUTES = [routes.LOGIN.path, routes.LOGOUT.path, routes.SIGNUP.path];
 
 class Router extends Component {
   render() {
     return (
       <Switch>
-        <Redirect exact from='/' to={ routes.EXTRATO.path }/>
-        <Route { ...routes.EXTRATO }/>
-        <Route { ...routes.LOGIN }/>
-        <Route { ...routes.SIGNUP }/>
-        <Route { ...routes.LOGOUT }/>
-        <Route { ...routes.NOT_FOUND }/>
+        <Redirect exact from="/" to={routes.EMPRESA_LISTAGEM.path} />
+        <Route {...routes.EMPRESA_LISTAGEM} />
+        <Route {...routes.EXTRATO} />
+        <Route {...routes.LOGIN} />
+        <Route {...routes.SIGNUP} />
+        <Route {...routes.LOGOUT} />
+        <Route {...routes.NOT_FOUND} />
       </Switch>
     );
   }

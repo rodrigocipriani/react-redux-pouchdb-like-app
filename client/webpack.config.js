@@ -19,7 +19,6 @@ const config = {
   buildFolder: path.resolve(__dirname, 'build'),
   sourceFolder: path.resolve(__dirname, IS_PRODUCTION ? './src' : './src'),
   entryPoint: './main.js',
-  entryPointVue: './main.vue.js',
   indexHtml: path.join(__dirname, 'assets', 'index.html'),
   isProduction: IS_PRODUCTION,
   host: '0.0.0.0',
@@ -32,14 +31,15 @@ const webpackConfig = {
   context: config.sourceFolder,
   entry: {
     app: config.entryPoint,
-    appReact: config.entryPointVue,
   },
   output: {
     path: config.buildFolder,
     // publicPath: "http://cdn.example.com/assets/[hash]/",
+    publicPath: '/',
     filename: config.bundleName,
   },
   resolve: {
+    extensions: ['.js', '.jsx'],
     modules: [config.sourceFolder, 'node_modules'],
   },
   watch: !config.isProduction,
@@ -71,39 +71,23 @@ const webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.vue\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: [
-            ['es2015', { modules: false }],
-            // 'react',
-            'stage-0',
-          ],
-          plugins: ['transform-vue-jsx'],
-        },
-        // include: [
-        //   config.sourceFolder,
-        // ],
-      },
-      {
         test: /\.(js|jsx)$/,
+        // test: /.jsx?$/, // Match both .js and .jsx
         loader: 'babel-loader',
-        exclude: [/node_modules/, /\.vue\.js$/],
-        query: {
-          presets: [['es2015', { modules: false }], 'react', 'stage-0'],
-          // plugins: ['transform-vue-jsx'],
-        },
-        // include: [
-        //   config.sourceFolder,
-        // ],
-      },
-      {
-        test: /\.vue$/,
-        exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'vue-loader',
-        },
+        exclude: [/node_modules/],
+        // query: {
+        //   plugins: [
+        //     require('babel-plugin-transform-class-properties'),
+        //     require('babel-plugin-syntax-decorators'),
+        //     require('babel-plugin-transform-decorators-legacy'),
+        //   ],
+        //   presets: [['es2015', { modules: false }], 'react', 'stage-0'],
+        //   env: {
+        //     development: {
+        //       presets: ['react-hmre'],
+        //     },
+        //   },
+        // },
       },
       {
         test: /\.css$/,

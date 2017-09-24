@@ -12,8 +12,11 @@ const isProduction = config.env.isProduction;
 const couchDBName = config.couchDB.dBname;
 const couchDBUrlConnector = config.couchDB.urlConnector;
 
-export default storeCreator({
-  appReducer: persistentReducer(appReducer),
-  authReducer: persistentReducer(authReducer),
-  realTimeStore: persistentReducer(realTime),
-}, { isProduction, showLoggers, couchDBName, couchDBUrlConnector });
+export default storeCreator(
+  {
+    appReducer,
+    authReducer,
+    realTimeStore: persistentReducer(realTime),
+  },
+  { isProduction, showLoggers, couchDBName, couchDBUrlConnector },
+);

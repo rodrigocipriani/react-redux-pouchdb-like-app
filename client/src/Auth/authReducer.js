@@ -1,8 +1,19 @@
 import { authActionTypes } from './authActionTypes';
 
 const initialState = {
-  user: null,
-  isAuthenticated: false,
+  // user: null,
+  user: {
+    id: 1,
+    nome: 'Rodrigo Cipriani da Rosa',
+    senha: '',
+    email: 'chopsss@gmail.com',
+    situacao: 1,
+    criacao: '2017-07-18T03:40:26.000Z',
+    foto: null,
+    tipo: 0,
+  },
+  // isAuthenticated: false,
+  isAuthenticated: true,
 };
 
 // const gravarUsuario = (user, state) => {
@@ -16,10 +27,8 @@ const initialState = {
 // };
 
 const actionsMap = {
-
   [authActionTypes.SIGNIN]: (state, action) => {
-    if(action.ready){
-
+    if (action.ready) {
       const user = action.result.data;
       // if (action.complete) {
       //   return gravarUsuario(user, state);
@@ -27,8 +36,6 @@ const actionsMap = {
       return { ...state, isAuthenticated: !!user, user };
     }
     return state;
-    
-
   },
 
   [authActionTypes.SIGNUP]: (state, action) => {

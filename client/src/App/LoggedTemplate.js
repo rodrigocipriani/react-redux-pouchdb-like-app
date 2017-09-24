@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import Navigation from 'es2k-react-components/material/components/Navigation';
+import Navigation from '../components/Navigation';
 import MenuLateral from './components/MenuLateral';
 import bgMenuLateral from './hacker.jpg';
-
 
 class LoggedTemplate extends Component {
   openAddPonto = () => {
@@ -20,17 +19,15 @@ class LoggedTemplate extends Component {
 
     return (
       <Navigation
-        topMenuTitle='Fidello'
-        topMenuContent={
-          <Button color='contrast'>Login</Button>
-        }
-        sideMenu={ <MenuLateral/> }
-        sideMenuTitle='Fidello'
-        sideMenuHeaderBg={ bgMenuLateral }
-        avatarImg='http://then.gasbuddy.com/images/default_avatar.gif'
-        avatarTitle={ usuario.nome }
-        avatarSubTitle={ usuario.email }
-        sideMenuFooter={ <span style={ { color: '#999999' } }>v 0.0.1</span> }
+        topMenuTitle="Like app"
+        topMenuContent={<Button color="contrast">Login</Button>}
+        sideMenu={<MenuLateral />}
+        sideMenuTitle="Like app"
+        sideMenuHeaderBg={bgMenuLateral}
+        avatarImg="http://then.gasbuddy.com/images/default_avatar.gif"
+        avatarTitle={usuario.nome}
+        avatarSubTitle={usuario.email}
+        sideMenuFooter={<span style={{ color: '#999999' }}>v 0.0.1</span>}
       >
         <div>
           <div>{children}</div>
@@ -61,4 +58,3 @@ LoggedTemplate.defaultProps = {
 };
 
 export default LoggedTemplate;
-

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
-import Typography from 'es2k-react-components/material/style/Typography';
-import Button from 'es2k-react-components/material/components/Button';
-import TextField from 'es2k-react-components/material/components/TextField';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+import TextField from 'material-ui/TextField';
 import * as realTimeActions from './realTimeActions';
 import RealTimeBigListComponent from './RealTimeBigListComponent';
 import hacker from './hacker.jpg';
@@ -43,7 +43,7 @@ class RealTime extends PureComponent {
         <Grid container spacing={0}>
           <Grid item xs={12}>
             <Typography type="display2" gutterBottom>
-              React RealTime !!
+              React RealTime
             </Typography>
             <img style={{ width: 200 }} src={hacker} />
 

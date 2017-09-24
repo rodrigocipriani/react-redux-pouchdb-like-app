@@ -14,7 +14,6 @@
   "license": "ISC",
   "dependencies": {
     "es2k-helpers": "0.0.2",
-    "es2k-react-components": "0.0.10",
     "keen-ui": "^1.0.0",
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-beta.5",
@@ -23,8 +22,10 @@
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-grid-system": "^2.9.6",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "react-sidebar": "^2.3.2",
     "redux": "^3.7.2",
     "redux-pouchdb": "^0.1.1",
     "vue": "^2.4.2",
@@ -37,9 +38,12 @@
     "babel-eslint": "^7.1.1",
     "babel-loader": "^7.1.2",
     "babel-plugin-syntax-jsx": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-vue-jsx": "^3.5.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-vue": "^1.2.1",
     "cachemanifest-webpack-plugin": "^1.0.2",
@@ -59,7 +63,8 @@
     "url-loader": "^0.5.9",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
-    "webpack-manifest-plugin": "^1.3.1"
+    "webpack-manifest-plugin": "^1.3.1",
+    "why-did-you-update": "0.0.8"
   },
   "optionalDependencies": {
     "babel-polyfill": "^6.26.0"
