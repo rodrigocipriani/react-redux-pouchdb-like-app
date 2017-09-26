@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull  : false,
             underscored: true
         },
-        tipo_usuario      : {
+        cd_tipo_usuario      : {
             type       : DataTypes.INTEGER,
             allowNull  : false,
             underscored: true
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull  : false,
             underscored: true
         },
-        tipo_login: {
+        cd_tipo_login: {
             type       : DataTypes.INTEGER,
             allowNull  : false,
             underscored: true

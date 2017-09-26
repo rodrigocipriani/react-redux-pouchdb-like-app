@@ -141,7 +141,7 @@ module.exports = () => {
    */
   consign({ cwd: path.join(process.cwd(), 'app') })
     .include('models/models.js')
-    // .then('utils')
+    .then('utils')
     .then('services')
     .then('controllers')
     .then('routes')

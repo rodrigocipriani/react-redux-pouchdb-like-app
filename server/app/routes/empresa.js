@@ -9,7 +9,9 @@ module.exports = app => {
   //   // .get( controller.consultarIndicador);
   //   .get(acesso.validarAcesso(3, { token: config.accessToken }), controller.consultarIndicador);
 
-  app.route(`${ config.apiUrl }/v1/despesa/consultar`).get(controller.consultarEmpresas);
+  app.route(`${ config.apiUrl }/v1/empresa/cadastrar`)
+      .post(controller.cadastrarEmpresa);
 
-  app.route(`${ config.apiUrl }/v1/despesa/consultar/proprias/abertas`).get(controller.consultarEmpresas);
+  app.route(`${ config.apiUrl }/v1/empresa/consultar`)
+      .get(controller.consultarEmpresas);
 };
