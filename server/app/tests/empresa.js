@@ -11,10 +11,10 @@ chai.use(chaiHttp);
 describe('Empresa', () => {
 
 
-    before(() => {
-        return EmpresaService.excluirTodasEmpresas()
-
-    });
+    // before(() => {
+    //     return EmpresaService.excluirTodasEmpresas()
+    //
+    // });
 
 
     describe('inclusão ', () => {

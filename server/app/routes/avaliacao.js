@@ -12,7 +12,7 @@ module.exports = app => {
   //   // .get( controller.consultarIndicador);
   //   .get(acesso.validarAcesso(3, { token: config.accessToken }), controller.consultarIndicador);
 
-  app.route(`${ config.apiUrl }/v1/despesa/consultar`).get(controller.consultarAvaliacao);
+  app.route(`${ config.apiUrl }/v1/avaliacao/cadastrar`).post(controller.avaliarEmpresa);
 
-  app.route(`${ config.apiUrl }/v1/despesa/consultar/proprias/abertas`).get(controller.consultarAvaliacoesAtuaisUsuario);
+  app.route(`${ config.apiUrl }/v1/avaliacao/consultar/usuario/todas`).get(controller.consultarAvaliacoesAtuaisUsuario);
 };

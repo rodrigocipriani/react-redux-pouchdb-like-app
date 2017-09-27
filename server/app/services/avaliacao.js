@@ -7,6 +7,8 @@ module.exports = (app) => {
 
     service.inserirAvaliacao                  = (usuarioId, empresaId, dataAvaliacao, texto, aprovacao) => {
 
+        console.log("aqui", usuarioId, empresaId, dataAvaliacao, texto, aprovacao );
+
         return AvaliacaoModel.create(
             {
                 where: {
