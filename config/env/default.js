@@ -35,6 +35,7 @@ module.exports = {
         ssl: true,
       },
       // logging : false,
+      operatorsAliases: false,
       freezeTableName: true,
       define: { timestamps: false },
       pool: { max: 9, min: 0, idle: 10000 },
