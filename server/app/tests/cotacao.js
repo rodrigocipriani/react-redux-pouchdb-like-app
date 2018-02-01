@@ -9,8 +9,8 @@ chai.use(chaiHttp);
 
 describe('cotações', () => {
   
-  describe('BITCOIN TRADE', () => {
-    it.skip('1 - compra e venda   ', () => {
+  describe('Simular Melhor Compra', () => {
+    it.skip('1 - cotações bitcoin trade   ', () => {
       
       return chai.request(app).get('/api/v1/cotacao/bitcoin-trade/consultar')
       .then(res => {
@@ -18,7 +18,7 @@ describe('cotações', () => {
         
       });
     });
-    it.skip('2 - compra e venda   ', () => {
+    it('2 - cotações geral   ', () => {
       
       const dados = {
           valor : 10537.12,
@@ -31,7 +31,7 @@ describe('cotações', () => {
         
       });
     });
-    it('3 - compra e venda   ', () => {
+    it.skip('3 - cotações mercado bitcoin   ', () => {
       
       const dados = {
           valor : 10537.12,
@@ -39,6 +39,19 @@ describe('cotações', () => {
       };
       
       return chai.request(app).get('/api/v1/cotacao/mercado-bitcoin/consultar').query(dados)
+      .then(res => {
+        res.should.have.status(200);
+        
+      });
+    });
+    it.skip('4 - cotações coin br   ', () => {
+      
+      const dados = {
+          valor : 10537.12,
+          moeda : 'BTC'
+      };
+      
+      return chai.request(app).get('/api/v1/cotacao/coin-br/consultar').query(dados)
       .then(res => {
         res.should.have.status(200);
         

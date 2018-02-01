@@ -8,7 +8,7 @@ module.exports = (app) => {
   
   service.recuperarOfertas                  = (moeda) => {
   
-    console.log("entrou", moeda);
+    // console.log("entrou", moeda);
     return axios.get(`https://www.mercadobitcoin.net/api/${moeda}/orderbook/`)
     .then(response => {
       // console.log("response", response);
