@@ -9,10 +9,18 @@ module.exports = (app) => {
   const BitcoinTradeService   = app.services.bitcoin_trade;
   const CoinExService         = app.services.coin_ex;
   const MercadoBitcoinService = app.services.mercado_bitcoin;
+  const CoinBrService = app.services.coin_br;
   
   const sequelize  = app.models.models.sequelize;
   const controller = {};
   
+  controller.consultarCotacoesCoingBr = async (req, res, next) => {
+    const cotacoes = await CoinBrService.consultarCotacoesCoingBr();
+    console.log('cotacoes Coin Br', cotacoes);
+    if(!cotacoes){ return next(new BrError(err)); }
+    res.json(cotacoes);
+  };
+
   controller.calcularCompra                = (req, res, next) => {
     
     console.log("req", req.query);
